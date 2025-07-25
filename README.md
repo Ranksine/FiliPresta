@@ -14,6 +14,8 @@ Los prestamos se realizarán en dos esquemas: prestamo personal y financiamiento
 3. Cantidad máxima de capital estan limitadas
 4. Cantidad maxima de creditos a 14 semanas. (+1 extra)
 
+---
+
 ### Financiamiento
 
 1. Los periodos de financiamiento son a 6, 12 y 24 meses
@@ -23,6 +25,8 @@ Los prestamos se realizarán en dos esquemas: prestamo personal y financiamiento
 4. Cuando la cuenta se tiene al corriente, se pueden realizar pagos adelantados
 5. Un pago adelantado se calcula de la siguiente manera:
    `capital/meses_financiados`
+
+---
 
 ### Lineamientos generales
 
@@ -50,6 +54,8 @@ Los prestamos se realizarán en dos esquemas: prestamo personal y financiamiento
   - Cantidad total pagada.
   - Porcentaje restante con una barra de progreso.
   - Cantidad de pagos faltantes.
+
+---
 
 ### Modulos
 
