@@ -71,6 +71,8 @@ Los prestamos se realizarán en dos esquemas: prestamo personal y financiamiento
 - Cartera de clientes (registro, consulta y modificación)
 - Cartera de proveedores (registro, consulta y modificación)
 
+---
+
 ## Dudas pendientes
 
 1. ¿Cuánto es lo maximo a prestar en cada prestamo?
@@ -84,4 +86,4 @@ Los prestamos se realizarán en dos esquemas: prestamo personal y financiamiento
 - Implementar vista movil
 - Realizar reportes estaticos y dinamicos
 
-### By: Ranksine
+### By: _Ranksine_
