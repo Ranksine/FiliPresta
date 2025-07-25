@@ -1,0 +1,107 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Catalogos
+model tipo_cliente {
+  id          BigInt  @id @default(autoincrement())
+  descripcion String
+  is_active   Boolean
+
+  clientes clientes[]
+
+  @@map("c_tipo_cliente")
+}
+
+model tipo_prestamo {
+  id          BigInt  @id @default(autoincrement())
+  descripcion String
+  is_active   Boolean
+
+  clientes   clientes[]
+  inversores inversores[]
+
+  @@map("c_tipo_prestamo")
+}
+
+// Entidades
+model persona {
+  id           BigInt  @id @default(autoincrement())
+  nombre       String
+  paterno      String
+  materno      String
+  domicilio_id BigInt?
+  edad         Int
+  sexo         String
+
+  domicilio domicilio? @relation(fields: [domicilio_id], references: [id])
+
+  usuario    usuario[]
+  clientes   clientes[]
+  inversores inversores[]
+
+  @@map("d_persona")
+}
+
+model domicilio {
+  id           BigInt  @id @default(autoincrement())
+  calle        String
+  num_ext      String
+  num_int      String
+  colonia      String
+  municipio_id BigInt
+  comentario   String?
+
+  persona persona[]
+
+  @@map("d_domicilio")
+}
+
+model usuario {
+  id         BigInt  @id @default(autoincrement())
+  username   String
+  pass       String //Hash
+  persona_id BigInt
+  is_active  Boolean
+  role       Int // SuperUser = 1 | Admin = 2 | SysUser = 3
+
+  persona persona @relation(fields: [persona_id], references: [id])
+
+  @@map("users")
+}
+
+model clientes {
+  id               BigInt @id @default(autoincrement())
+  persona_id       BigInt
+  tipo_cliente_id  BigInt
+  tipo_prestamo_id BigInt
+
+  persona       persona       @relation(fields: [persona_id], references: [id])
+  tipo_cliente  tipo_cliente  @relation(fields: [tipo_cliente_id], references: [id])
+  tipo_prestamo tipo_prestamo @relation(fields: [tipo_prestamo_id], references: [id])
+
+  @@map("d_clientes")
+}
+
+model inversores {
+  id               BigInt   @id @default(autoincrement())
+  persona_id       BigInt
+  tipo_prestamo_id BigInt
+  inversion        Float
+  fecha_registro   DateTime
+  is_active        Boolean
+
+  persona       persona       @relation(fields: [persona_id], references: [id])
+  tipo_prestamo tipo_prestamo @relation(fields: [tipo_prestamo_id], references: [id])
+
+  @@map("d_inversores")
+}

@@ -1,0 +1,18 @@
+{
+  "name": "filipresta",
+  "version": "1.0.0",
+  "description": "Gestión de prestamos Filemón",
+  "main": "index.js",
+  "workspaces":[
+    "apps/api",
+    "apps/web"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"npm run dev --workspace=app/web & npm run start:dev --workspace==apps/api",
+    "build":"npm run dev --workspace=app/web & npm run build --workspace==apps/api"
+  },
+  "keywords": [],
+  "author": "Ranksine",
+  "license": "ISC"
+}
