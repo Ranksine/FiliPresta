@@ -5,12 +5,14 @@
   "main": "index.js",
   "workspaces":[
     "apps/api",
-    "apps/web"
+    "apps/client"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev":"npm run dev --workspace=app/web & npm run start:dev --workspace==apps/api",
-    "build":"npm run dev --workspace=app/web & npm run build --workspace==apps/api"
+    "dev":"npm run dev --workspace=app/client & npm run start:dev --workspace==apps/api",
+    "build":"npm run dev --workspace=app/client & npm run build --workspace==apps/api",
+    "electron:dev": "electron .",
+    "electron: build": "npm run build && electron-builder"
   },
   "keywords": [],
   "author": "Ranksine",
