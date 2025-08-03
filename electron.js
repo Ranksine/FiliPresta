@@ -7,29 +7,22 @@ function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: true,
+      nodeIntegration: false,
+      contextIsolation: true
     },
   });
 
-  // En desarrollo, carga la URL del servidor de Next.js.
-  // En producción, carga el archivo HTML exportado.
-  const startUrl = isDev
-    ? 'http://localhost:3000'
-    : `file://${path.join(__dirname, 'apps/web/out/index.html')}`;
-
-  win.loadURL(startUrl);
+  win.loadURL('http://localhoct:3000'); //Next.js UI
 }
 
-app.whenReady().then(createWindow);
+app.whenReady().then(()=>{
+  createWindow();
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
+  app.on('activate', function () {
+    if(BrowserWindow.getAllWindows().length === 0) createWindow();
+  });
 });
 
-app.on('activate', () => {
-  if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow();
-  }
+app.on('window-all-closed', function() {
+  if(process.platform !== 'darwin') app.quit();
 });

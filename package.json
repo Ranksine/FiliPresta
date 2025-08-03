@@ -1,20 +1,32 @@
 {
   "name": "filipresta",
   "version": "1.0.0",
-  "description": "Gestión de prestamos Filemón",
+  "description": "Gestión de préstamos Filemón",
+  "private": true,
   "main": "index.js",
-  "workspaces":[
+  "packageManager": "npm@10.9.2",
+  "workspaces": [
     "apps/api",
     "apps/client"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev":"npm run dev --workspace app/client & npm run start:dev --workspace apps/api",
-    "build":"npm run dev --workspace app/client & npm run build --workspace apps/api",
-    "electron:dev": "electron .",
-    "electron: build": "npm run build && electron-builder"
+    "dev": "concurrently \"turbo run dev\" \"npm run electron:dev\"",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "electron:dev": "wait-on http://localhost:3000 && electron ./electron.js",
+    "electron:build": "npm run build && electron-builder"
   },
   "keywords": [],
   "author": "Ranksine",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/dotenv": "^6.1.1",
+    "concurrently": "^9.2.0",
+    "electron": "^37.2.5",
+    "turbo": "^2.5.5",
+    "wait-on": "^8.0.4"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.1"
+  }
 }
