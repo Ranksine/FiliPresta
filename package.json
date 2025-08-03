@@ -10,9 +10,10 @@
     "apps/client"
   ],
   "scripts": {
-    "dev": "turbo run dev --parallel",
-    "build": "turbo run build",
-    "lint": "turbo run lint",
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "prepare": "husky install",
     "electron:dev": "wait-on http://localhost:3000 && electron ./electron.js",
     "electron:build": "npm run build && electron-builder"
   },
