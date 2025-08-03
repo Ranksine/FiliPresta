@@ -10,7 +10,7 @@
     "apps/client"
   ],
   "scripts": {
-    "dev": "concurrently \"turbo run dev\" \"npm run electron:dev\"",
+    "dev": "turbo run dev --parallel",
     "build": "turbo run build",
     "lint": "turbo run lint",
     "electron:dev": "wait-on http://localhost:3000 && electron ./electron.js",
